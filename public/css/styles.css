@@ -1,6 +1,154 @@
-/******* Change Box Model ***************/
-*,
-*:before,
-*:after {
+* {
+  margin: 0;
+  padding: 0;
   box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+/* Header */
+#top-header {
+  display: flex;
+  justify-content: space-between; 
+  align-items: center;
+  background-color: #000000;      
+  color: white;
+  padding: 15px 40px;
+}
+
+/* site name */
+#top-header .SiteName a {
+  color: white;
+  font-size: 1.8rem;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+/* Tool link */
+#top-header #tools a {
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+  margin-left: 20px;
+  transition: color 0.3s;
+}
+
+#top-header #tools a:hover {
+  color: #f39c12;
+}
+
+/* Navigation Menu */
+.nav-menu {
+  background-color: #000;     /* fundo preto */
+  padding: 10px 0;            /* espaçamento vertical */
+}
+
+.nav-menu ul {
+  list-style: none;           /* remove marcadores */
+  display: flex;              /* coloca os itens na horizontal */
+  justify-content: center;    /* centraliza horizontalmente */
+  align-items: center;        /* centraliza verticalmente */
+  gap: 30px;                  /* espaço entre os itens */
+  margin: 0;
+  padding: 0;
+}
+
+.nav-menu li {
+  color: white;               /* cor do texto */
+  font-size: 1.1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.nav-menu li:hover {
+  color: #8fa8c1;             /* muda a cor ao passar o mouse */
+}
+
+
+/*  Hero Section  */
+.hero {
+  text-align: center;
+  padding: 1.5rem;
+  background-color: #f5f5f5;
+}
+
+.hero-img {
+  border-radius: 10px;
+  margin-bottom: 1rem;
+  max-width: 100%;
+  height: auto;
+}
+
+.hero-text h1 {
+  color: #003366;
+  font-size: 1.8rem;
+}
+
+.btn-primary {
+  display: inline-block;
+  background-color: #ff9900;
+  color: #fff;
+  text-decoration: none;
+  padding: 0.75rem 1.25rem;
+  border-radius: 6px;
+  margin-top: 1rem;
+  font-weight: 600;
+}
+
+.btn-primary:hover {
+  background-color: #e68a00;
+}
+
+/*  Features Section */
+.features {
+  text-align: center;
+  padding: 2rem 1rem;
+}
+
+.features h2 {
+  color: #003366;
+  margin-bottom: 1.5rem;
+}
+
+.feature-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.feature-grid article {
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  padding: 1rem;
+}
+
+.feature-grid h3 {
+  color: #00509e;
+  margin-top: 0.75rem;
+}
+
+/* Larger Screens  */
+@media screen and (min-width: 768px) {
+  .hero {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: left;
+    padding: 3rem;
+  }
+
+  .hero-text {
+    max-width: 400px;
+    margin-left: 2rem;
+  }
+
+  .feature-grid {
+    flex-direction: row;
+    justify-content: space-around;
+  }
+
+  .feature-grid article {
+    max-width: 30%;
+  }
 }
