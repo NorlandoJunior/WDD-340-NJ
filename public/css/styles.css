@@ -33,7 +33,7 @@
 }
 
 #top-header #tools a:hover {
-  color: #f39c12;
+  color: #8b0505;
 }
 
 /* Navigation Menu */
@@ -61,7 +61,7 @@
 }
 
 .nav-menu li:hover {
-  color: #8fa8c1;             
+  color: #8b0505;             
 }
 
 
@@ -80,13 +80,13 @@
 }
 
 .hero-text h1 {
-  color: #003366;
+  color: #000000;
   font-size: 1.8rem;
 }
 
 .btn-primary {
   display: inline-block;
-  background-color: #ff9900;
+  background-color: #9a0000;
   color: #fff;
   text-decoration: none;
   padding: 0.75rem 1.25rem;
@@ -96,36 +96,68 @@
 }
 
 .btn-primary:hover {
-  background-color: #e68a00;
+  background-color: #000000;
 }
 
-/*  Features Section */
-.features {
+/*  Upgrade Section */
+.upgrade {
   text-align: center;
   padding: 2rem 1rem;
 }
 
-.features h2 {
-  color: #003366;
+.upgrade h2 {
+  color: #000000;
   margin-bottom: 1.5rem;
 }
 
-.feature-grid {
+.upgrade-grid {
+  display: flex;
+  flex-wrap: wrap;   
+  gap: 1.5rem;
+  justify-content: center; 
+}
+
+.upgrade-grid button {
+  color: #fff;
+  background-color: #8b0505;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  padding: 1rem;
+  flex: 1 1 200px; 
+  max-width: 220px;
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  align-items: center;
+  text-align: center;
+  height: 250px;      
+  cursor: pointer;
 }
 
-.feature-grid article {
-  background-color: #fff;
-  border-radius: 10px;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-  padding: 1rem;
+.upgrade-grid button img {
+  max-width: 80px;
+  height: auto;
+  margin-bottom: 1rem;
 }
 
-.feature-grid h3 {
-  color: #00509e;
-  margin-top: 0.75rem;
+.upgrade-grid button h3 {
+  margin: 0.5rem 0;
+}
+
+.upgrade-grid button p {
+  font-size: 0.9rem;
+}
+
+.upgrade-grid button:hover {
+  background-color: #000;
+}
+
+/* Footer */
+#footer {
+  background-color: #000;     
+  color: white;               
+  text-align: center;         
+  padding: 1rem 0;           
+  margin-top: 2rem;          
 }
 
 /* Larger Screens  */
@@ -143,12 +175,12 @@
     margin-left: 2rem;
   }
 
-  .feature-grid {
+  .upgrade-grid {
     flex-direction: row;
     justify-content: space-around;
   }
 
-  .feature-grid article {
+  .upgrade-grid article {
     max-width: 30%;
   }
 }
