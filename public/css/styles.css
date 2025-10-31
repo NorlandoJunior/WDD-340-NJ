@@ -117,37 +117,39 @@
   justify-content: center; 
 }
 
-.upgrade-grid button {
-  color: #fff;
-  background-color: #8b0505;
-  border-radius: 10px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-  padding: 1rem;
-  flex: 1 1 200px; 
-  max-width: 220px;
+.upgrade-card {
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
-  height: 250px;      
+  background-color: #8b0505;
+  color: #fff;
+  padding: 1rem;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  flex: 1 1 200px;
+  max-width: 220px;
+  height: 250px;
+  text-decoration: none; /* remove underline */
   cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-.upgrade-grid button img {
+.upgrade-card img {
   max-width: 80px;
   height: auto;
   margin-bottom: 1rem;
 }
 
-.upgrade-grid button h3 {
+.upgrade-card h3 {
   margin: 0.5rem 0;
 }
 
-.upgrade-grid button p {
+.upgrade-card p {
   font-size: 0.9rem;
 }
 
-.upgrade-grid button:hover {
+.upgrade-card:hover {
   background-color: #000;
 }
 
