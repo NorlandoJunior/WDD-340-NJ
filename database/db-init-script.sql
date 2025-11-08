@@ -1,5 +1,9 @@
--- Create the custom ENUM type first
-CREATE TYPE account_type AS ENUM ('Admin', 'Client');
+-- Create client_type data type
+DROP TYPE IF EXISTS piblic.account_type;
+CREATE TYPE public.account_type AS ENUM (
+    'Admin', 
+    'Client',
+    'Employee');
 
 -- Table structure for table 'classification'
 CREATE TABLE public.classification (
