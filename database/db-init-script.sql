@@ -45,8 +45,6 @@ CREATE TABLE IF NOT EXISTS public.account
     CONSTRAINT account_pkey PRIMARY KEY (account_id)
 );
 
-CREATE TYPE account_type AS ENUM ('Admin', 'Client');
-
 
   -- Fix description for HM Hummer
 UPDATE inventory
