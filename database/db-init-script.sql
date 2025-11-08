@@ -1,5 +1,5 @@
 -- Create client_type data type
-DROP TYPE IF EXISTS piblic.account_type;
+DROP TYPE IF EXISTS public.account_type;
 CREATE TYPE public.account_type AS ENUM (
     'Admin', 
     'Client',
