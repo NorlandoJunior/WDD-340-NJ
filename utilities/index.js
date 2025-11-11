@@ -24,7 +24,6 @@ Util.getNav = async function (req, res, next) {
   return list
 }
 
-module.exports = Util
 
 /* **************************************
 * Build the classification view HTML
@@ -32,29 +31,24 @@ module.exports = Util
 Util.buildClassificationGrid = async function(data){
   let grid
   if(data.length > 0){
-    grid = '<ul id="inv-display">'
+    grid = ''
     data.forEach(vehicle => { 
-      grid += '<li>'
-      grid +=  '<a href="../../inv/detail/'+ vehicle.inv_id 
-      + '" title="View ' + vehicle.inv_make + ' '+ vehicle.inv_model 
-      + 'details"><img src="' + vehicle.inv_thumbnail 
-      +'" alt="Image of '+ vehicle.inv_make + ' ' + vehicle.inv_model 
-      +' on CSE Motors" /></a>'
-      grid += '<div class="namePrice">'
-      grid += '<hr />'
-      grid += '<h2>'
-      grid += '<a href="../../inv/detail/' + vehicle.inv_id +'" title="View ' 
-      + vehicle.inv_make + ' ' + vehicle.inv_model + ' details">' 
-      + vehicle.inv_make + ' ' + vehicle.inv_model + '</a>'
-      grid += '</h2>'
-      grid += '<span>$' 
-      + new Intl.NumberFormat('en-US').format(vehicle.inv_price) + '</span>'
-      grid += '</div>'
-      grid += '</li>'
+      grid += `
+        <article>
+          <img src="${vehicle.inv_thumbnail}" 
+               alt="Image of ${vehicle.inv_make} ${vehicle.inv_model} on CSE Motors">
+          <div class="namePrice">
+            <h2>${vehicle.inv_make} ${vehicle.inv_model}</h2>
+            <p>$${new Intl.NumberFormat('en-US').format(vehicle.inv_price)}</p>
+            <a href="../../inv/detail/${vehicle.inv_id}" class="btn-primary">View Details</a>
+          </div>
+        </article>
+      `
     })
-    grid += '</ul>'
   } else { 
-    grid += '<p class="notice">Sorry, no matching vehicles could be found.</p>'
+    grid = '<p class="notice">Sorry, no matching vehicles could be found.</p>'
   }
   return grid
 }
+
+module.exports = Util

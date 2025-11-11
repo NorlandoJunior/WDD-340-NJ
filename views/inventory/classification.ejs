@@ -1,9 +1,30 @@
-<% if (title) { %>
-<h1><%= title %></h1>
-<% } else {
-  res.redirect('/')
-} %>
+<main class="inventory-page">
 
-<%# messages() %>
+    <% if (title) { %>
+        <section class="inv-header">
+            <h1>
+                <%= title %>
+            </h1>
+            <p>Explore our car lineup</p>
+        </section>
+        <% } else { %>
+            <% res.redirect('/') %>
+                <% } %>
 
-<%- grid %>
+                    <!-- Server message -->
+                    <% if (typeof messages !=='undefined' && messages.length> 0) { %>
+                        <section class="inv-messages">
+                            <% messages.forEach(msg=> { %>
+                                <p>
+                                    <%= msg %>
+                                </p>
+                                <% }) %>
+                        </section>
+                        <% } %>
+
+                            <!-- grid cars -->
+                            <section class="inv-grid">
+                                <%- grid %>
+                            </section>
+
+</main>

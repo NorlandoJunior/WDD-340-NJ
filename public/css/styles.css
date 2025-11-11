@@ -8,9 +8,9 @@
 /* Header */
 #top-header {
   display: flex;
-  justify-content: space-between; 
+  justify-content: space-between;
   align-items: center;
-  background-color: #000000;      
+  background-color: #000000;
   color: white;
   padding: 15px 40px;
 }
@@ -38,22 +38,22 @@
 
 /* Navigation Menu */
 .nav-menu {
-  background-color: #000;     
-  padding: 10px 0;           
+  background-color: #000;
+  padding: 10px 0;
 }
 
 .nav-menu ul {
-  list-style: none;           
-  display: flex;              
-  justify-content: center;    
-  align-items: center;        
-  gap: 30px;                  
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
   margin: 0;
   padding: 0;
 }
 
 .nav-menu li {
-  color: white;         
+  color: white;
   font-size: 1.1rem;
   font-weight: 500;
   cursor: pointer;
@@ -61,7 +61,7 @@
 }
 
 .nav-menu li:hover {
-  color: #8b0505;             
+  color: #8b0505;
 }
 
 
@@ -112,9 +112,9 @@
 
 .upgrade-grid {
   display: flex;
-  flex-wrap: wrap;   
+  flex-wrap: wrap;
   gap: 1.5rem;
-  justify-content: center; 
+  justify-content: center;
 }
 
 .upgrade-card {
@@ -126,11 +126,12 @@
   color: #fff;
   padding: 1rem;
   border-radius: 10px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
   flex: 1 1 200px;
   max-width: 220px;
   height: 250px;
-  text-decoration: none; /* remove underline */
+  text-decoration: none;
+  /* remove underline */
   cursor: pointer;
   transition: background-color 0.3s ease, color 0.3s ease;
 }
@@ -155,11 +156,11 @@
 
 /* Footer */
 #footer {
-  background-color: #000;     
-  color: white;               
-  text-align: center;         
-  padding: 1rem 0;           
-  margin-top: 2rem;          
+  background-color: #000;
+  color: white;
+  text-align: center;
+  padding: 1rem 0;
+  margin-top: 2rem;
 }
 
 /* Larger Screens  */
@@ -185,4 +186,78 @@
   .upgrade-grid article {
     max-width: 30%;
   }
+}
+
+/* Inventory Page */
+.inventory-page {
+  padding: 2rem 1rem;
+  background-color: #f5f5f5;
+  min-height: 80vh;
+}
+
+.inv-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.inv-header h1 {
+  color: #000;
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+.inv-header p {
+  color: #333;
+  font-size: 1rem;
+}
+
+/* message */
+.inv-messages {
+  text-align: center;
+  color: #8b0505;
+  margin-bottom: 1.5rem;
+}
+
+/* Autos grid */
+.inv-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+  justify-items: center;
+}
+
+.inv-grid article {
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.inv-grid article:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 5px 12px rgba(0, 0, 0, 0.15);
+}
+
+.inv-grid img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+}
+
+.inv-grid h2 {
+  color: #000;
+  font-size: 1.2rem;
+  margin: 0.5rem 0;
+}
+
+.inv-grid p {
+  color: #444;
+  font-size: 0.9rem;
+  padding: 0 0.75rem 1rem;
+}
+
+.inv-grid a.btn-primary {
+  margin-bottom: 1rem;
 }

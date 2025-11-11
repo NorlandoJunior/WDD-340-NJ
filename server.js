@@ -21,6 +21,7 @@ app.set("layout", "./layouts/layout"); // not at views root
 /* ***********************
  * Routes
  *************************/
+app.use(express.static("public"))
 app.use(static)
 //index route
 app.get("/", baseController.buildHome);
