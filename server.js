@@ -11,7 +11,8 @@ const app = express()
 const static = require("./routes/static")
 const expressLayouts = require("express-ejs-layouts")
 const baseController = require("./controllers/baseController")
-const inventoryRoute = require("./routes/inventoryRoute");
+const inventoryRoute = require("./routes/inventoryRoute")
+const utilities = require("./utilities")
 
 /* View Engine and Templates */
 app.set("view engine", "ejs");
@@ -27,6 +28,10 @@ app.use(static)
 app.get("/", baseController.buildHome);
 // Inventory route
 app.use("/inv", inventoryRoute);
+// File Not Found Route - must be last route in list
+app.use(async (req, res, next) => {
+  next({status: 404, message: 'Sorry, we appear to have lost that page.'})
+})
 
 /* ***********************
  * Local Server Information
@@ -34,6 +39,20 @@ app.use("/inv", inventoryRoute);
  *************************/
 const port = process.env.PORT
 const host = process.env.HOST
+
+/* ***********************
+* Express Error Handler
+* Place after all other middleware
+*************************/
+app.use(async (err, req, res, next) => {
+  let nav = await utilities.getNav()
+  console.error(`Error at: "${req.originalUrl}": ${err.message}`)
+  res.render("errors/error", {
+    title: err.status || 'Server Error',
+    message: err.message,
+    nav
+  })
+})
 
 /* ***********************
  * Log statement to confirm server operation
