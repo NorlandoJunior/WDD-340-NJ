@@ -261,3 +261,78 @@
 .inv-grid a.btn-primary {
   margin-bottom: 1rem;
 }
+
+/* VEHICLE DETAIL PAGE */
+.vehicle-detail-page {
+  width: 100%;
+  max-width: 1200px;
+  margin: 2rem auto;
+  padding: 1rem;
+}
+
+/* Title */
+.vehicle-header h1 {
+  text-align: center;
+  margin-bottom: 2rem;
+  font-size: 2rem;
+  color: #222;
+}
+
+/* Layout */
+.vehicle-info {
+  display: grid;
+  grid-template-columns: 2fr 1.5fr;
+  gap: 2rem;
+  align-items: start;
+  background: #fff;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* big img */
+.vehicle-info img {
+  width: 100%;
+  border-radius: 10px;
+  object-fit: cover;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+/* Information */
+.vehicle-details {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.vehicle-details h2 {
+  font-size: 1.8rem;
+  color: #000;
+  margin-bottom: 0.5rem;
+}
+
+/* Information lines style */
+.vehicle-details p {
+  font-size: 1rem;
+  color: #333;
+  line-height: 1.4;
+}
+
+.vehicle-details strong {
+  color: #000;
+}
+
+/* Price */
+.vehicle-details .vehicle-price {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #8b0505;
+  margin: 1rem 0;
+}
+
+/* Responsive media */
+@media (max-width: 900px) {
+  .vehicle-info {
+    grid-template-columns: 1fr;
+  }
+}
