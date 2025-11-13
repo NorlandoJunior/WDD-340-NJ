@@ -51,6 +51,32 @@ Util.buildClassificationGrid = async function (data) {
   }
   return grid
 }
+/* **************************************
+ * Build the vehicle detail HTML
+ * ************************************ */
+Util.buildVehicleDetail = function (v) {
+  return `
+    <!-- LEFT (image) + RIGHT (details) -->
+    <img src="${v.inv_image}" 
+         alt="${v.inv_make} ${v.inv_model}" />
+
+    <div class="vehicle-details">
+      <h2>${v.inv_year} ${v.inv_make} ${v.inv_model}</h2>
+
+      <p class="vehicle-price">
+        $${new Intl.NumberFormat("en-US").format(v.inv_price)}
+      </p>
+
+      <p><strong>Mileage:</strong> 
+        ${new Intl.NumberFormat("en-US").format(v.inv_miles)} miles
+      </p>
+
+      <p><strong>Color:</strong> ${v.inv_color}</p>
+
+      <p><strong>Description:</strong> ${v.inv_description}</p>
+    </div>
+  `
+}
 
 /* ****************************************
  * Middleware For Handling Errors

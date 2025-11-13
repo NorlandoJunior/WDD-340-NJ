@@ -44,24 +44,20 @@ invCont.buildById = async function (req, res, next) {
     const vehicle = await invModel.getInventoryItemById(invId)
 
     if (!vehicle) {
-      let nav = await utilities.getNav()
-      return res.status(404).render("inventory/detail", {
-        title: "Vehicle Not Found",
-        nav,
-        vehicle: null,
-      })
+      return res.status(404).send("Vehicle not found.")
     }
 
     const nav = await utilities.getNav()
-    const vehicleName = `${vehicle.inv_year} ${vehicle.inv_make} ${vehicle.inv_model}`
+    const detailHTML = utilities.buildVehicleDetail(vehicle)
+
+    const title = `${vehicle.inv_year} ${vehicle.inv_make} ${vehicle.inv_model}`
 
     res.render("inventory/detail", {
-      title: vehicleName,
+      title,
       nav,
-      vehicle,
+      detailHTML,
     })
   } catch (error) {
-    console.error("buildById error:", error)
     next(error)
   }
 }

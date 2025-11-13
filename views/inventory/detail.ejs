@@ -1,25 +1,13 @@
-<main class="vehicle-detail-page">
-  <section class="vehicle-header">
-    <h1><%= vehicle.inv_make %> <%= vehicle.inv_model %></h1>
-  </section>
+<%- include("../partials/header") %>
 
-  <section class="vehicle-info">
-    
-    <!-- IMAGE -->
-    <img src="<%= vehicle.inv_image %>" alt="Image of <%= vehicle.inv_make %> <%= vehicle.inv_model %>">
+<div class="vehicle-detail-page">
 
-    <!-- DETAILS -->
-    <div class="vehicle-details">
+  <div class="vehicle-header">
+    <h1><%= title %></h1>
+  </div>
 
-      <h2><%= vehicle.inv_year %> <%= vehicle.inv_make %> <%= vehicle.inv_model %></h2>
+  <div class="vehicle-info">
+    <%- detailHTML %>
+  </div>
 
-      <p class="vehicle-price">$<%= new Intl.NumberFormat().format(vehicle.inv_price) %></p>
-
-      <p><strong>Mileage:</strong> <%= new Intl.NumberFormat().format(vehicle.inv_miles) %> miles</p>
-      <p><strong>Color:</strong> <%= vehicle.inv_color %></p>
-      <p><strong>Description:</strong> <%= vehicle.inv_description %></p>
-
-    </div>
-
-  </section>
-</main>
+</div>
