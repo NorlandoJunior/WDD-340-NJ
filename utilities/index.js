@@ -5,10 +5,11 @@ const Util = {}
  * Constructs the nav HTML unordered list
  ************************** */
 Util.getNav = async function (req, res, next) {
-  let data = await invModel.getClassifications()
+  let data = await invModel.getClassifications() // ✅ data is an array now
   let list = "<ul>"
   list += '<li><a href="/" title="Home page">Home</a></li>'
-  data.rows.forEach((row) => {
+
+  data.forEach((row) => {
     list += "<li>"
     list +=
       '<a href="/inv/type/' +
@@ -20,32 +21,32 @@ Util.getNav = async function (req, res, next) {
       "</a>"
     list += "</li>"
   })
+
   list += "</ul>"
   return list
 }
 
-
 /* **************************************
-* Build the classification view HTML
-* ************************************ */
-Util.buildClassificationGrid = async function(data){
+ * Build the classification view HTML
+ * ************************************ */
+Util.buildClassificationGrid = async function (data) {
   let grid
-  if(data.length > 0){
-    grid = ''
-    data.forEach(vehicle => { 
+  if (data.length > 0) {
+    grid = ""
+    data.forEach((vehicle) => {
       grid += `
         <article>
           <img src="${vehicle.inv_thumbnail}" 
                alt="Image of ${vehicle.inv_make} ${vehicle.inv_model} on CSE Motors">
           <div class="namePrice">
             <h2>${vehicle.inv_make} ${vehicle.inv_model}</h2>
-            <p>$${new Intl.NumberFormat('en-US').format(vehicle.inv_price)}</p>
-            <a href="../../inv/detail/${vehicle.inv_id}" class="btn-primary">View Details</a>
+            <p>$${new Intl.NumberFormat("en-US").format(vehicle.inv_price)}</p>
+            <a href="/inv/detail/${vehicle.inv_id}" class="btn-primary">View Details</a>
           </div>
         </article>
       `
     })
-  } else { 
+  } else {
     grid = '<p class="notice">Sorry, no matching vehicles could be found.</p>'
   }
   return grid
@@ -53,9 +54,8 @@ Util.buildClassificationGrid = async function(data){
 
 /* ****************************************
  * Middleware For Handling Errors
- * Wrap other function in this for 
- * General Error Handling
  **************************************** */
-Util.handleErrors = fn => (req, res, next) => Promise.resolve(fn(req, res, next)).catch(next)
+Util.handleErrors = (fn) => (req, res, next) =>
+  Promise.resolve(fn(req, res, next)).catch(next)
 
 module.exports = Util

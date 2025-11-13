@@ -1,0 +1,16 @@
+<main class="vehicle-detail-page">
+  <section class="vehicle-header">
+    <h1><%= title %></h1>
+  </section>
+
+  <section class="vehicle-info">
+    <img src="<%= vehicle.inv_image %>" alt="Image of <%= vehicle.inv_make %> <%= vehicle.inv_model %>">
+    <div class="vehicle-details">
+      <h2><%= vehicle.inv_make %> <%= vehicle.inv_model %></h2>
+      <p><strong>Price:</strong> $<%= new Intl.NumberFormat().format(vehicle.inv_price) %></p>
+      <p><strong>Description:</strong> <%= vehicle.inv_description %></p>
+      <p><strong>Color:</strong> <%= vehicle.inv_color %></p>
+      <p><strong>Miles:</strong> <%= new Intl.NumberFormat().format(vehicle.inv_miles) %> miles</p>
+    </div>
+  </section>
+</main>
