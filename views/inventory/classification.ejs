@@ -1,30 +1,26 @@
-<main class="inventory-page">
+<div class="inventory-page">
 
     <% if (title) { %>
         <section class="inv-header">
-            <h1>
-                <%= title %>
-            </h1>
+            <h1><%= title %></h1>
             <p>Explore our car lineup</p>
         </section>
-        <% } else { %>
-            <% res.redirect('/') %>
-                <% } %>
+    <% } else { %>
+        <% res.redirect('/') %>
+    <% } %>
 
-                    <!-- Server message -->
-                    <% if (typeof messages !=='undefined' && messages.length> 0) { %>
-                        <section class="inv-messages">
-                            <% messages.forEach(msg=> { %>
-                                <p>
-                                    <%= msg %>
-                                </p>
-                                <% }) %>
-                        </section>
-                        <% } %>
+    <!-- Server message -->
+    <% if (typeof messages !== 'undefined' && messages.length > 0) { %>
+        <section class="inv-messages">
+            <% messages.forEach(msg => { %>
+                <p><%= msg %></p>
+            <% }) %>
+        </section>
+    <% } %>
 
-                            <!-- grid cars -->
-                            <section class="inv-grid">
-                                <%- grid %>
-                            </section>
+    <!-- Grid cars -->
+    <div class="inv-grid">
+        <%- grid %>
+    </div>
 
-</main>
+</div>
