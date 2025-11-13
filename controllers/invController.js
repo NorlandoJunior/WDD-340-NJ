@@ -12,7 +12,6 @@ invCont.buildByClassificationId = async function (req, res, next) {
     const data = await invModel.getInventoryByClassificationId(classification_id)
 
     if (!data || data.length === 0) {
-      // Handle empty result gracefully
       let nav = await utilities.getNav()
       return res.status(404).render("inventory/classification", {
         title: "No vehicles found",
@@ -36,5 +35,35 @@ invCont.buildByClassificationId = async function (req, res, next) {
   }
 }
 
-module.exports = invCont
+/* ***************************
+ *  Build inventory item detail view
+ * ************************** */
+invCont.buildById = async function (req, res, next) {
+  try {
+    const invId = req.params.invId
+    const vehicle = await invModel.getInventoryItemById(invId)
 
+    if (!vehicle) {
+      let nav = await utilities.getNav()
+      return res.status(404).render("inventory/detail", {
+        title: "Vehicle Not Found",
+        nav,
+        vehicle: null,
+      })
+    }
+
+    const nav = await utilities.getNav()
+    const vehicleName = `${vehicle.inv_year} ${vehicle.inv_make} ${vehicle.inv_model}`
+
+    res.render("inventory/detail", {
+      title: vehicleName,
+      nav,
+      vehicle,
+    })
+  } catch (error) {
+    console.error("buildById error:", error)
+    next(error)
+  }
+}
+
+module.exports = invCont
