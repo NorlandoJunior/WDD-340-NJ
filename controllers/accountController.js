@@ -9,8 +9,8 @@ async function buildLogin(req, res, next) {
   res.render("account/login", { 
     title: "Login", 
     nav,
-    errors: [],           // garante que errors sempre existe
-    account_email: ""     // opcional: mantém o email preenchido, se quiser
+    errors: [],
+    account_email: ""
   })
 }
 
