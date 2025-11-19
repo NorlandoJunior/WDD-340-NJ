@@ -1,10 +1,12 @@
 <main id="registration-view">
   <h1><%= title %></h1>
 
-  <!-- Flash Messages -->
-  <% if (messages && messages().length > 0) { %>
+  <!-- Server-side error messages -->
+  <% if (errors && errors.length > 0) { %>
     <div class="flash-messages">
-      <%= messages() %>
+      <% errors.forEach(error => { %>
+        <p><%= error %></p>
+      <% }) %>
     </div>
   <% } %>
 
@@ -41,26 +43,26 @@
     >
 
     <!-- PASSWORD -->
-<label for="account_password">Password</label>
+    <label for="account_password">Password</label>
+    <div class="password-wrapper">
+      <input 
+        type="password" 
+        id="account_password" 
+        name="account_password" 
+        required
+        minlength="12"
+        pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{12,}$"
+      >
+      <button type="button" id="togglePassword" class="toggle-password">Show</button>
+    </div>
 
-<div class="password-wrapper">
-  <input 
-    type="password" 
-    id="account_password" 
-    name="account_password" 
-    required
-    minlength="12"
-  >
-  <button type="button" id="togglePassword" class="toggle-password">Show</button>
-</div>
-
-<!-- PASSWORD REQUIREMENTS -->
-<p class="password-hint">
-  • Minimum 12 characters<br>
-  • At least 1 uppercase letter<br>
-  • At least 1 number<br>
-  • At least 1 special character
-</p>
+    <!-- PASSWORD REQUIREMENTS -->
+    <p class="password-hint">
+      • Minimum 12 characters<br>
+      • At least 1 uppercase letter<br>
+      • At least 1 number<br>
+      • At least 1 special character
+    </p>
 
     <!-- SUBMIT -->
     <button type="submit" class="submit-btn">Register</button>

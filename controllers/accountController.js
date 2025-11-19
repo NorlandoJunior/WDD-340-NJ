@@ -1,29 +1,66 @@
 const utilities = require("../utilities/")
 const accountModel = require("../models/account-model")
 
-/* Deliver login view */
+/* ****************************************
+*  Deliver login view
+* **************************************** */
 async function buildLogin(req, res, next) {
   let nav = await utilities.getNav()
-  res.render("account/login", {
-    title: "Login",
+  res.render("account/login", { 
+    title: "Login", 
     nav,
+    errors: [],           // garante que errors sempre existe
+    account_email: ""     // opcional: mantém o email preenchido, se quiser
   })
 }
 
-/* Deliver registration view */
+/* ****************************************
+*  Deliver registration view
+* **************************************** */
 async function buildRegister(req, res, next) {
   let nav = await utilities.getNav()
-  res.render("account/register", {
-    title: "Register",
-    nav,
-    errors: null
+  res.render("account/register", { 
+    title: "Register", 
+    nav, 
+    errors: [],
+    account_firstname: "",
+    account_lastname: "",
+    account_email: ""
   })
 }
 
-/* Process registration */
-async function registerAccount(req, res) {
+/* ****************************************
+*  Process registration with server-side validation
+* **************************************** */
+async function registerAccount(req, res, next) {
   let nav = await utilities.getNav()
   const { account_firstname, account_lastname, account_email, account_password } = req.body
+
+  const errors = []
+
+  if (!account_firstname || !account_lastname || !account_email || !account_password) {
+    errors.push("All fields are required")
+  }
+
+  const passwordPattern = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{12,}$/
+  if (account_password && !passwordPattern.test(account_password)) {
+    errors.push("Password must be at least 12 chars, contain 1 uppercase, 1 number, and 1 special character")
+  }
+
+  if (account_email && await accountModel.checkEmailExists(account_email)) {
+    errors.push("Email already in use")
+  }
+
+  if (errors.length > 0) {
+    return res.status(400).render("account/register", { 
+      title: "Register", 
+      nav, 
+      errors, 
+      account_firstname, 
+      account_lastname, 
+      account_email 
+    })
+  }
 
   const regResult = await accountModel.registerAccount(
     account_firstname,
@@ -33,23 +70,22 @@ async function registerAccount(req, res) {
   )
 
   if (regResult && regResult.rowCount > 0) {
-    req.flash("notice", `Congratulations, you're registered ${account_firstname}. Please log in.`)
-    res.status(201).render("account/login", {
-      title: "Login",
-      nav,
+    res.status(201).render("account/login", { 
+      title: "Login", 
+      nav, 
+      errors: ["Registration successful! Please log in."],
+      account_email: account_email
     })
   } else {
-    req.flash("notice", "Sorry, the registration failed.")
-    res.status(501).render("account/register", {
-      title: "Register",
-      nav,
-      errors: null
+    res.status(500).render("account/register", { 
+      title: "Register", 
+      nav, 
+      errors: ["Registration failed due to server error."],
+      account_firstname, 
+      account_lastname, 
+      account_email 
     })
   }
 }
 
-module.exports = { 
-  buildLogin,
-  buildRegister,
-  registerAccount
-}
+module.exports = { buildLogin, buildRegister, registerAccount }
