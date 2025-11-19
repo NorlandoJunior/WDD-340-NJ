@@ -1,13 +1,6 @@
 <main id="account-login">
   <h1><%= title %></h1>
 
-  <!-- Flash Messages -->
-  <% if (messages && messages().length > 0) { %>
-    <div class="flash-messages">
-      <%= messages() %>
-    </div>
-  <% } %>
-
   <!-- Login Form -->
   <form action="/account/login" method="post" class="form">
     <label for="account_email">Email</label>
