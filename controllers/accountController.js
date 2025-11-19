@@ -1,21 +1,15 @@
-const utilities = require("../utilities")
+const utilities = require("../utilities/")
 
-const accountController = {}
 
 /* ****************************************
- *  Build My Account view
- * **************************************** */
-accountController.buildAccount = async function (req, res, next) {
-  try {
-    const nav = await utilities.getNav()
-    res.render("account/index", {
-      title: "My Account",
-      nav,
-    })
-  } catch (err) {
-    next(err)
-  }
+*  Deliver login view
+* *************************************** */
+async function buildLogin(req, res, next) {
+  let nav = await utilities.getNav()
+  res.render("account/login", {
+    title: "Login",
+    nav,
+  })
 }
 
-module.exports = accountController
-
+module.exports = { buildLogin }

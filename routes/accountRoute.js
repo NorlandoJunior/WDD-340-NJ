@@ -3,10 +3,10 @@ const router = express.Router()
 const utilities = require("../utilities/")
 const accountController = require("../controllers/accountController")
 
-// Route for "My Account" page
+// Login route
 router.get(
-  "/", 
-  utilities.handleErrors(accountController.buildAccount)
+  "/login",
+  utilities.handleErrors(accountController.buildLogin)
 )
 
 module.exports = router
