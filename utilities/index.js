@@ -4,7 +4,7 @@ const Util = {}
 /* ************************
  * Constructs the nav HTML unordered list
  ************************** */
-Util.getNav = async function (req, res, next) {
+Util.getNav = async function () {
   let data = await invModel.getClassifications()
   let list = "<ul>"
   list += '<li><a href="/" title="Home page">Home</a></li>'
@@ -89,7 +89,7 @@ Util.buildClassificationGrid = async function (data) {
 /* **************************************
  * Build the vehicle detail HTML
  ************************************ */
-Util.buildVehicleDetail = function (v) {
+Util.buildVehicleDetailHTML = function (v) {
   return `
     <!-- LEFT (image) + RIGHT (details) -->
     <img src="${v.inv_image}" 

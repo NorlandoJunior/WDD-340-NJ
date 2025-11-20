@@ -64,7 +64,7 @@ async function getInventoryByClassificationId(classification_id) {
 /* ================================
  *  Get vehicle by ID
  * ================================ */
-async function getInventoryItemById(inv_id) {
+async function getVehicleById(inv_id) {
   try {
     const sql = `
       SELECT 
@@ -78,7 +78,7 @@ async function getInventoryItemById(inv_id) {
     const data = await pool.query(sql, [inv_id])
     return data.rows[0]
   } catch (error) {
-    console.error("getInventoryItemById error:", error)
+    console.error("getVehicleById error:", error)
     throw error
   }
 }
@@ -130,7 +130,7 @@ async function addInventory(
 module.exports = {
   getClassifications,
   getInventoryByClassificationId,
-  getInventoryItemById,
+  getVehicleById,
   addClassification,
   addInventory
 }

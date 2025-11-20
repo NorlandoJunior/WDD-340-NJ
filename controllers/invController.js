@@ -39,20 +39,24 @@ invController.buildByClassificationId = async function (req, res, next) {
   })
 }
 
-
 /* ===========================================
- * Build Vehicle Detail View
+ * Build Vehicle Detail View (CORRIGIDO)
  * =========================================== */
 invController.buildById = async function (req, res, next) {
   let nav = await utilities.getNav()
   const vehicle_id = req.params.invId
 
+
   const data = await invModel.getVehicleById(vehicle_id)
 
+
+  const detailHTML = await utilities.buildVehicleDetailHTML(data)
+
+ 
   res.render("inventory/detail", {
     title: `${data.inv_make} ${data.inv_model}`,
     nav,
-    vehicle: data,
+    detailHTML,
     errors: null
   })
 }
