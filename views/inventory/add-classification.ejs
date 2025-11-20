@@ -1,0 +1,55 @@
+<main class="add-classification-page">
+
+  <h1>Add New Classification</h1>
+
+  <!-- Flash Messages -->
+  <% if (locals.notice) { %>
+    <div class="flash-message">
+      <%= locals.notice %>
+    </div>
+  <% } %>
+
+  <!-- Validation errors -->
+  <% if (errors && errors.length > 0) { %>
+    <div class="form-errors">
+      <ul>
+        <% errors.forEach(err => { %>
+          <li><%= err.msg %></li>
+        <% }) %>
+      </ul>
+    </div>
+  <% } %>
+
+  <form action="/inv/add-classification" method="POST" id="addClassificationForm">
+
+    <label for="classification_name">Classification Name</label>
+    <input 
+      type="text"
+      id="classification_name"
+      name="classification_name"
+      required
+      minlength="3"
+      pattern="[A-Za-z0-9]+"
+      title="No spaces or special characters allowed."
+      value="<%= classification_name ? classification_name : '' %>"
+    >
+
+    <p class="hint">
+      * Name must contain only letters and numbers. No spaces or special characters.
+    </p>
+
+    <button type="submit" class="btn-primary">Add Classification</button>
+
+  </form>
+</main>
+
+<script>
+  // simple client-side validation message
+  document.getElementById("addClassificationForm").addEventListener("submit", function(e){
+      const input = document.getElementById("classification_name");
+      if(!/^[A-Za-z0-9]+$/.test(input.value)){
+          alert("Classification name cannot contain spaces or special characters.");
+          e.preventDefault();
+      }
+  });
+</script>

@@ -27,8 +27,42 @@ Util.getNav = async function (req, res, next) {
 }
 
 /* **************************************
+ * Build <select> list for classifications
+ *************************************** */
+Util.buildClassificationList = async function (classification_id = null) {
+  try {
+    let data = await invModel.getClassifications()
+
+    let classificationList =
+      '<select name="classification_id" id="classificationList" required>'
+
+    classificationList += "<option value=''>Choose a Classification</option>"
+
+    data.forEach((row) => {
+      classificationList += `<option value="${row.classification_id}"`
+
+      if (
+        classification_id !== null &&
+        Number(classification_id) === Number(row.classification_id)
+      ) {
+        classificationList += " selected"
+      }
+
+      classificationList += `>${row.classification_name}</option>`
+    })
+
+    classificationList += "</select>"
+
+    return classificationList
+  } catch (error) {
+    console.error("buildClassificationList error:", error)
+    return '<select name="classification_id" id="classificationList"><option value="">Error loading classifications</option></select>'
+  }
+}
+
+/* **************************************
  * Build the classification view HTML
- * ************************************ */
+ ************************************ */
 Util.buildClassificationGrid = async function (data) {
   let grid
   if (data.length > 0) {
@@ -51,9 +85,10 @@ Util.buildClassificationGrid = async function (data) {
   }
   return grid
 }
+
 /* **************************************
  * Build the vehicle detail HTML
- * ************************************ */
+ ************************************ */
 Util.buildVehicleDetail = function (v) {
   return `
     <!-- LEFT (image) + RIGHT (details) -->
