@@ -67,9 +67,10 @@ invController.buildById = async function (req, res, next) {
 invController.buildAddClassification = async function (req, res, next) {
   let nav = await utilities.getNav()
   res.render("inventory/add-classification", {
-    title: "Add New Classification",
-    nav,
-    errors: null
+  title: "Add Classification",
+  nav,
+  classification_name: "",
+  errors: null
   })
 }
 
