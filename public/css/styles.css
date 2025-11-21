@@ -545,3 +545,323 @@ Registration & Login Form Styles
     padding: 1.5rem;
   }
 }
+
+/* ===========================
+   Add Classification Page
+   =========================== */
+.add-classification-page {
+  max-width: 500px;
+  margin: 3rem auto;
+  padding: 2rem;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.add-classification-page h1 {
+  font-size: 2rem;
+  text-align: center;
+  margin-bottom: 1.5rem;
+  color: #111;
+}
+
+/* Flash Messages */
+.flash-message {
+  background-color: #ffe9e9;
+  border: 1px solid #ffb4b4;
+  color: #a10505;
+  padding: 1rem;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+  text-align: center;
+  font-weight: bold;
+}
+
+/* Validation Errors */
+.form-errors {
+  background-color: #ffe9e9;
+  border: 1px solid #ffb4b4;
+  color: #a10505;
+  padding: 1rem;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+}
+
+.form-errors ul {
+  list-style: disc;
+  margin-left: 1.5rem;
+}
+
+/* Form Styles */
+#addClassificationForm {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+#addClassificationForm label {
+  font-weight: 600;
+  color: #222;
+}
+
+#addClassificationForm input {
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid #cfcfcf;
+  font-size: 1rem;
+  background-color: #fafafa;
+  transition: all 0.2s ease;
+}
+
+#addClassificationForm input:focus {
+  border-color: #111;
+  background-color: #fff;
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(0,0,0,0.08);
+}
+
+/* Hint Text */
+.hint {
+  font-size: 0.9rem;
+  color: #555;
+  margin-top: 4px;
+  line-height: 1.3;
+}
+
+/* Submit Button */
+#addClassificationForm .btn-primary {
+  margin-top: 1rem;
+  padding: 14px;
+  width: 100%;
+  border: none;
+  background-color: #000000;
+  color: #fff;
+  font-size: 1.05rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+#addClassificationForm .btn-primary:hover {
+  background-color: #2b2b2b;
+}
+
+@media (max-width: 500px) {
+  .add-classification-page {
+    margin: 1.5rem;
+    padding: 1.5rem;
+  }
+}
+
+/* ===========================
+   Add Inventory Page
+   =========================== */
+.add-inventory-page {
+  max-width: 700px;
+  margin: 3rem auto;
+  padding: 2rem;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.add-inventory-page h1 {
+  font-size: 2rem;
+  text-align: center;
+  margin-bottom: 1.5rem;
+  color: #111;
+}
+
+/* Validation Errors */
+.error-box {
+  background-color: #ffe9e9;
+  border: 1px solid #ffb4b4;
+  color: #a10505;
+  padding: 1rem;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+}
+
+.error-box ul {
+  list-style: disc;
+  margin-left: 1.5rem;
+}
+
+/* Form Styles */
+#inventory-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+#inventory-form label {
+  font-weight: 600;
+  color: #222;
+}
+
+#inventory-form input,
+#inventory-form select,
+#inventory-form textarea {
+  width: 100%;
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid #cfcfcf;
+  font-size: 1rem;
+  background-color: #fafafa;
+  transition: all 0.2s ease;
+}
+
+#inventory-form input:focus,
+#inventory-form select:focus,
+#inventory-form textarea:focus {
+  border-color: #111;
+  background-color: #fff;
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(0,0,0,0.08);
+}
+
+/* Textarea specific */
+#inventory-form textarea {
+  min-height: 100px;
+  resize: vertical;
+}
+
+/* Submit Button */
+#inventory-form .btn-primary {
+  margin-top: 1rem;
+  padding: 14px;
+  width: 100%;
+  border: none;
+  background-color: #000000;
+  color: #fff;
+  font-size: 1.05rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+#inventory-form .btn-primary:hover {
+  background-color: #2b2b2b;
+}
+
+/* Hint text (if needed) */
+.hint {
+  font-size: 0.9rem;
+  color: #555;
+  margin-top: 4px;
+  line-height: 1.3;
+}
+
+/* Responsive for smaller screens */
+@media (max-width: 700px) {
+  .add-inventory-page {
+    margin: 1.5rem;
+    padding: 1.5rem;
+  }
+}
+
+/* ===========================
+   MANAGEMENT PAGE
+   =========================== */
+.management-page {
+  max-width: 800px;
+  margin: 3rem auto;
+  padding: 2rem;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  font-family: Arial, sans-serif;
+}
+
+/* Page Header */
+.management-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.management-header h1 {
+  font-size: 2rem;
+  color: #111;
+  margin-bottom: 0.5rem;
+}
+
+.management-header p {
+  font-size: 1rem;
+  color: #333;
+}
+
+/* Flash Messages */
+.flash-message {
+  background-color: #ffe9e9;
+  border: 1px solid #ffb4b4;
+  color: #a10505;
+  padding: 1rem;
+  border-radius: 8px;
+  margin-bottom: 1.5rem;
+  text-align: center;
+  font-weight: bold;
+}
+
+/* Management Actions Section */
+.management-actions h2 {
+  text-align: center;
+  font-size: 1.5rem;
+  color: #111;
+  margin-bottom: 1.5rem;
+}
+
+.management-links {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: center;
+  padding: 0;
+}
+
+.management-links li {
+  width: 100%;
+  text-align: center;
+}
+
+/* Buttons */
+.management-links a {
+  display: inline-block;
+  width: 250px;
+  text-decoration: none;
+  text-align: center;
+  padding: 0.75rem 1rem;
+  font-weight: 600;
+  border-radius: 8px;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+.management-links a.btn-primary {
+  background-color: #9a0000;
+  color: #fff;
+}
+
+.management-links a.btn-primary:hover {
+  background-color: #000000;
+}
+
+.management-links a.btn-secondary {
+  background-color: #8b0505;
+  color: #fff;
+}
+
+.management-links a.btn-secondary:hover {
+  background-color: #2b2b2b;
+}
+
+/* Responsive for smaller screens */
+@media (max-width: 500px) {
+  .management-page {
+    margin: 1.5rem;
+    padding: 1.5rem;
+  }
+
+  .management-links a {
+    width: 100%;
+  }
+}
