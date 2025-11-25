@@ -11,7 +11,7 @@
   <% } %>
 
   <!-- Login Form -->
-  <form action="/account/login" method="post" class="form">
+  <form id="loginForm" action="/account/login" method="post" class="form">
     <label for="account_email">Email</label>
     <input type="email" id="account_email" name="account_email" required
       value="<%= typeof account_email != 'undefined' ? account_email : '' %>">
