@@ -5,9 +5,10 @@ const accountController = require("../controllers/accountController")
 const regValidate = require('../utilities/account-validation')
 
 
- //Account Management View
+// Account Management View
 router.get(
   "/",
+  utilities.checkLogin,
   utilities.handleErrors(accountController.buildAccountManagement)
 )
 
