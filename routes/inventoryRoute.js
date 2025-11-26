@@ -1,7 +1,7 @@
 const express = require("express")
 const router = express.Router()
 
-const invController = require("../controllers/invController") 
+const invController = require("../controllers/invController")
 const utilities = require("../utilities/")
 const invValidate = require("../utilities/inv-validation")
 
@@ -43,12 +43,18 @@ router.get(
   utilities.handleErrors(invController.buildAddInventory)
 )
 
-// Add inventory (POST) — FIXED
+// Add inventory (POST)
 router.post(
   "/add",
   invValidate.inventoryRules(),
   invValidate.checkAddInventory,
-  (req, res, next) => invController.addInventory(req, res, next)
+  utilities.handleErrors(invController.addInventory)
+)
+
+// JSON route for AJAX inventory loading
+router.get(
+  "/getInventory/:classification_id",
+  utilities.handleErrors(invController.getInventoryJSON)
 )
 
 module.exports = router

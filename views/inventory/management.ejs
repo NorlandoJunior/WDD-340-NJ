@@ -1,38 +1,38 @@
 <div class="management-page">
 
-  <!-- Navigation -->
   <%- nav %>
 
-  <!-- Page Header -->
   <header class="management-header">
     <h1>Inventory Management</h1>
     <p>Manage vehicle classifications and inventory items.</p>
   </header>
 
-  <!-- Flash Messages -->
   <% if (locals.notice) { %>
     <div class="flash-message">
       <p><%= notice %></p>
     </div>
   <% } %>
 
-  <!-- Management Options -->
   <section class="management-actions">
     <h2>What would you like to do?</h2>
-
     <ul class="management-links">
-      <li>
-        <a href="/inv/add-classification" class="btn-primary">
-          Add New Classification
-        </a>
-      </li>
-
-      <li>
-        <a href="/inv/add-inventory" class="btn-secondary">
-          Add New Inventory Item
-        </a>
-      </li>
+      <li><a href="/inv/add-classification" class="btn-primary">Add New Classification</a></li>
+      <li><a href="/inv/add-inventory" class="btn-secondary">Add New Inventory Item</a></li>
     </ul>
   </section>
 
+  <section class="manage-inventory">
+    <h2>Manage Inventory</h2>
+    <p>Select a classification from the list to see all the vehicles belonging to it.</p>
+
+    <%- classificationSelect %>
+
+    <table id="inventoryDisplay"></table>
+
+    <noscript>JavaScript must be enabled to use this page.</noscript>
+  </section>
+
 </div>
+
+<!-- Correct script -->
+<script src="/js/inventory.js"></script>

@@ -902,3 +902,59 @@ Account Management Page
   margin: 0.5rem 0;
   font-size: 1rem;
 }
+
+/* Section Title */
+.manage-inventory h2 {
+  font-size: 1.6rem;
+  font-weight: bold;
+  margin-top: 2rem;
+}
+
+/* Instructions */
+.manage-inventory p {
+  margin-bottom: 1rem;
+  color: #444;
+}
+
+/* Select dropdown */
+#classificationList {
+  padding: 8px 10px;
+  font-size: 1rem;
+  width: 250px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  margin-bottom: 1.5rem;
+}
+
+/* Table styling */
+#inventoryDisplay {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+  max-width: 500px;
+}
+
+/* Header */
+#inventoryDisplay thead th {
+  text-align: left;
+  font-size: 1.2rem;
+  padding-bottom: 8px;
+  border-bottom: 2px solid #000;
+}
+
+/* Table rows */
+#inventoryDisplay tbody td {
+  padding: 6px 0;
+  font-size: 1rem;
+}
+
+/* Modify / Delete links */
+#inventoryDisplay a {
+  margin-left: 10px;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+#inventoryDisplay a:hover {
+  text-decoration: underline;
+}
