@@ -57,4 +57,10 @@ router.get(
   utilities.handleErrors(invController.getInventoryJSON)
 )
 
+// Edit inventory item view
+router.get(
+  "/edit/:invId",
+  utilities.handleErrors(invController.buildEditInventory)
+)
+
 module.exports = router
