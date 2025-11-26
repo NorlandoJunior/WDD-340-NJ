@@ -958,3 +958,88 @@ Account Management Page
 #inventoryDisplay a:hover {
   text-decoration: underline;
 }
+
+/* ==========================
+   Delete Confirmation Page
+=========================== */
+.inventory-page {
+  max-width: 600px;
+  margin: 3rem auto;
+  padding: 2rem;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  font-family: Arial, sans-serif;
+}
+
+.inventory-page h1 {
+  text-align: center;
+  font-size: 2rem;
+  color: #111;
+  margin-bottom: 0.5rem;
+}
+
+.inventory-page p {
+  text-align: center;
+  font-size: 1rem;
+  color: #333;
+  margin-bottom: 2rem;
+}
+
+/* Flash Messages */
+.inventory-page .flash-message {
+  background-color: #ffe9e9;
+  border: 1px solid #ffb4b4;
+  color: #a10505;
+  padding: 1rem;
+  border-radius: 8px;
+  margin-bottom: 1.5rem;
+  text-align: center;
+  font-weight: bold;
+}
+
+/* Vehicle Details Box */
+.inventory-page .vehicle-details {
+  background-color: #f5f5f5;
+  padding: 1.5rem;
+  border-radius: 10px;
+  margin-bottom: 2rem;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+}
+
+.inventory-page .vehicle-details p {
+  font-size: 1rem;
+  color: #333;
+  margin: 0.5rem 0;
+}
+
+.inventory-page .vehicle-details strong {
+  color: #000;
+}
+
+/* Delete Button */
+.inventory-page .btn-delete {
+  display: block;
+  width: 100%;
+  padding: 14px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  background-color: #9a0000;
+  color: #fff;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.inventory-page .btn-delete:hover {
+  background-color: #000000;
+}
+
+/* Responsive */
+@media (max-width: 500px) {
+  .inventory-page {
+    margin: 1.5rem;
+    padding: 1.5rem;
+  }
+}

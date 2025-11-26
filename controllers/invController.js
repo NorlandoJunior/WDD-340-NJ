@@ -259,4 +259,58 @@ invController.updateInventory = async function (req, res, next) {
   })
 }
 
+/* =========================================================
+ * Build Delete Inventory View
+ * ========================================================= */
+invController.buildDeleteInventory = async function (req, res, next) {
+  try {
+    const invId = parseInt(req.params.invId)  // Step 1: coletar inv_id da URL
+    const nav = await utilities.getNav()      // Step 2: construir a navegação
+
+    // Step 3: pegar os dados do item do model
+    const invData = await invModel.getInventoryById(invId)
+
+    if (!invData) {
+      req.flash("error", "Inventory item not found.")
+      return res.redirect("/inv")
+    }
+
+    // Step 4: montar um nome legível para a view
+    const itemName = `${invData.make} ${invData.model}`
+
+    // Step 5: renderizar a view delete-confirm
+    res.render("inventory/delete-confirm", {
+      title: `Delete ${itemName}`,
+      nav,
+      errors: null,
+      inv: invData,
+    })
+  } catch (error) {
+    next(error)
+  }
+}
+
+/* =========================================================
+ * Delete Inventory Item
+ * ========================================================= */
+invController.deleteInventory = async function (req, res, next) {
+  try {
+    const invId = parseInt(req.body.inv_id)  // Step 1: coletar inv_id do body
+
+    // Step 2: chamar a função do model que deleta o item
+    const deleteResult = await invModel.deleteInventoryItem(invId)
+
+    // Step 3: verificar se deletou com sucesso
+    if (deleteResult) {
+      req.flash("success", "Inventory item deleted successfully.")
+      return res.redirect("/inv")  // voltar para management
+    } else {
+      req.flash("error", "Failed to delete inventory item.")
+      return res.redirect(`/inv/delete/${invId}`)  // voltar para a confirmação
+    }
+  } catch (error) {
+    next(error)
+  }
+}
+
 module.exports = invController

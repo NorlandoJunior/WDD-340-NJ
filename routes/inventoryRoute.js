@@ -66,14 +66,21 @@ router.get(
 // Update Inventory Item
 router.post(
   "/update",
-  utilities.handleErrors(invController.updateInventory)
-)
-
-router.post(
-  "/update",
   invValidate.inventoryRules(),
   invValidate.checkUpdateData,
   utilities.handleErrors(invController.updateInventory)
+)
+
+// Delete confirmation page (GET)
+router.get(
+  "/delete/:invId",
+  utilities.handleErrors(invController.buildDeleteInventory)
+)
+
+// Process the deletion (POST)
+router.post(
+  "/delete",
+  utilities.handleErrors(invController.deleteInventory)
 )
 
 module.exports = router
