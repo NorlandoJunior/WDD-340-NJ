@@ -1,0 +1,50 @@
+<div class="form-container">
+    <h1>Update Account Information</h1>
+
+    <% if (locals.notice) { %>
+        <div class="flash-message"><%= notice %></div>
+    <% } %>
+
+    <% if (errors) { %>
+        <div class="form-errors">
+            <% errors.array().forEach(err => { %>
+                <p><%= err.msg %></p>
+            <% }) %>
+        </div>
+    <% } %>
+
+    <form action="/account/update" method="POST">
+
+        <!-- Hidden original email (necessário para validação) -->
+        <input type="hidden" name="original_email" value="<%= account_email %>">
+
+        <label for="account_firstname">First Name</label>
+        <input 
+            type="text" 
+            id="account_firstname" 
+            name="account_firstname" 
+            value="<%= account_firstname %>" 
+            required
+        >
+
+        <label for="account_lastname">Last Name</label>
+        <input 
+            type="text" 
+            id="account_lastname" 
+            name="account_lastname" 
+            value="<%= account_lastname %>" 
+            required
+        >
+
+        <label for="account_email">Email</label>
+        <input 
+            type="email" 
+            id="account_email" 
+            name="account_email" 
+            value="<%= account_email %>" 
+            required
+        >
+
+        <button type="submit">Save Changes</button>
+    </form>
+</div>

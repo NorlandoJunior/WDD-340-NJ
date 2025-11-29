@@ -39,8 +39,49 @@ async function getAccountByEmail (account_email) {
   }
 }
 
+/* *****************************
+ *   Update account information
+ * ***************************** */
+async function updateAccount(account_id, firstname, lastname, email) {
+  try {
+    const sql = `
+      UPDATE account
+      SET account_firstname = $1,
+          account_lastname = $2,
+          account_email = $3
+      WHERE account_id = $4
+      RETURNING *
+    `
+    const result = await pool.query(sql, [firstname, lastname, email, account_id])
+    return result.rowCount
+  } catch (error) {
+    console.log("Update error:", error)
+    return null
+  }
+}
+
+/* *****************************
+ *  Update password
+ ***************************** */
+async function updatePassword(account_password, account_id) {
+  try {
+    const sql = `
+      UPDATE account
+      SET account_password = $1
+      WHERE account_id = $2
+      RETURNING *
+    `
+    const result = await pool.query(sql, [account_password, account_id])
+    return result.rowCount
+  } catch (error) {
+    throw error
+  }
+}
+
 module.exports = {
   registerAccount,
   checkEmailExists,
-  getAccountByEmail
+  getAccountByEmail,
+  updateAccount,
+  updatePassword
 }

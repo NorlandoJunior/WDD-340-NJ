@@ -1,25 +1,26 @@
 <div class="inventory-page">
-  <h1>Confirm Deletion</h1>
-  <p>This action is permanent and cannot be undone.</p>
+  <h1>Confirm Vehicle Deletion</h1>
+  <p class="warning-text">This action is permanent and cannot be undone.</p>
 
   <!-- Flash Messages -->
   <% if (locals.notice) { %>
     <div class="flash-message">
-      <%= locals.notice %>
+      <%= notice %>
     </div>
   <% } %>
 
-  <!-- Display vehicle details -->
- <div class="vehicle-details">
-  <p><strong>Make:</strong> <%= inv.inv_make %></p>
-  <p><strong>Model:</strong> <%= inv.inv_model %></p>
-  <p><strong>Year:</strong> <%= inv.inv_year %></p>
-  <p><strong>Price:</strong> $<%= inv.inv_price %></p>
-</div>
+  <!-- Ensure inv exists -->
+  <% if (inv) { %>
+    <div class="vehicle-details">
+      <p><strong>Make:</strong> <%= inv.inv_make %></p>
+      <p><strong>Model:</strong> <%= inv.inv_model %></p>
+      <p><strong>Year:</strong> <%= inv.inv_year %></p>
+      <p><strong>Price:</strong> $<%= inv.inv_price %></p>
+    </div>
 
-  <!-- Delete form -->
-  <form action="/inv/delete" method="POST">
-    <input type="hidden" name="inv_id" value="<%= inv.inv_id %>">
-    <button type="submit" class="btn btn-delete">Delete</button>
-  </form>
-</div>
+    <!-- Delete Form -->
+    <form action="/inv/delete" method="POST" class="delete-form">
+      <input type="hidden" name="inv_id" value="<%= inv.inv_id %>">
+      <button type="submit" class="btn btn-delete">Confirm Delete</button>
+      <a href="/inv" class="btn btn-cancel">Cancel</a>
+    </form

@@ -1,4 +1,4 @@
-const pool = require("../database/")
+const pool = require("../database/");
 const getInventoryById = getVehicleById
 
 
@@ -186,6 +186,35 @@ async function deleteInventoryItem(inv_id) {
 }
 
 
+
+/* ===============================================
+ * Get Inventory Item by ID
+ * =============================================== */
+async function getInventoryDetailById(inv_id) {
+  try {
+    const sql = "SELECT * FROM inventory WHERE inv_id = $1";
+    const data = await pool.query(sql, [inv_id]);
+    return data.rows[0];
+  } catch (error) {
+    console.error("getInventoryDetailById error:", error);
+    throw error;
+  }
+}
+
+/* ===============================================
+ * Delete Inventory Item
+ * =============================================== */
+async function deleteInventoryItem(inv_id) {
+  try {
+    const sql = "DELETE FROM inventory WHERE inv_id = $1";
+    const result = await pool.query(sql, [inv_id]);
+    return result.rowCount; // returns 1 if deleted
+  } catch (error) {
+    console.error("deleteInventoryItem error:", error);
+    throw error;
+  }
+}
+
 module.exports = {
   getClassifications,
   getInventoryByClassificationId,
@@ -194,5 +223,7 @@ module.exports = {
   addClassification,
   addInventory,
   updateInventory,
-  deleteInventoryItem  
+  deleteInventoryItem,
+  getInventoryDetailById,
+  deleteInventoryItem,  
 }

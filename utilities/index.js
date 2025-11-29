@@ -3,7 +3,6 @@ const Util = {}
 const jwt = require("jsonwebtoken")
 require("dotenv").config()
 
-
 /* ************************
  * Constructs the nav HTML unordered list
  ************************** */
@@ -94,7 +93,6 @@ Util.buildClassificationGrid = async function (data) {
  ************************************ */
 Util.buildVehicleDetailHTML = function (v) {
   return `
-    <!-- LEFT (image) + RIGHT (details) -->
     <img src="${v.inv_image}" 
          alt="${v.inv_make} ${v.inv_model}" />
 
@@ -117,45 +115,74 @@ Util.buildVehicleDetailHTML = function (v) {
 }
 
 /* ****************************************
- * Middleware For Handling Errors
+ * Middleware For Handling Errors (corrigido)
  **************************************** */
-Util.handleErrors = (fn) => (req, res, next) =>
-  Promise.resolve(fn(req, res, next)).catch(next)
-
-
-/* ****************************************
-* Middleware to check token validity
-**************************************** */
-Util.checkJWTToken = (req, res, next) => {
- if (req.cookies.jwt) {
-  jwt.verify(
-   req.cookies.jwt,
-   process.env.ACCESS_TOKEN_SECRET,
-   function (err, accountData) {
-    if (err) {
-     req.flash("Please log in")
-     res.clearCookie("jwt")
-     return res.redirect("/account/login")
+Util.handleErrors = (fn) => {
+  return async (req, res, next) => {
+    try {
+      await fn(req, res, next)
+    } catch (err) {
+      next(err)
     }
-    res.locals.accountData = accountData
-    res.locals.loggedin = 1
-    next()
-   })
- } else {
-  next()
- }
+  }
 }
 
 /* ****************************************
- *  Check Login
- * ************************************ */
- Util.checkLogin = (req, res, next) => {
+ * JWT Token Check
+ **************************************** */
+Util.checkJWTToken = (req, res, next) => {
+  const token = req.cookies.jwt
+
+  if (!token) {
+    res.locals.loggedin = 0
+    return next()
+  }
+
+  jwt.verify(
+    token,
+    process.env.ACCESS_TOKEN_SECRET,
+    function (err, accountData) {
+      if (err) {
+        res.locals.loggedin = 0
+        return next()
+      }
+
+      res.locals.loggedin = 1
+      res.locals.accountData = accountData
+      next()
+    }
+  )
+}
+
+/* ****************************************
+ * Check Login
+ **************************************** */
+Util.checkLogin = (req, res, next) => {
   if (res.locals.loggedin) {
     next()
   } else {
     req.flash("notice", "Please log in.")
     return res.redirect("/account/login")
   }
- }
+}
+
+/* ****************************************
+ * Restrict Access (Employee / Admin)
+ **************************************** */
+Util.checkAccountType = (req, res, next) => {
+  const user = res.locals.accountData
+
+  if (!user) {
+    req.flash("notice", "Please log in to access this page.")
+    return res.redirect("/account/login")
+  }
+
+  if (user.account_type === "Employee" || user.account_type === "Admin") {
+    return next()
+  }
+
+  req.flash("notice", "You do not have permission to access Inventory Management.")
+  return res.redirect("/account/login")
+}
 
 module.exports = Util

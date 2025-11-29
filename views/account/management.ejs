@@ -3,7 +3,10 @@
   <!-- Page Header -->
   <header class="account-header">
     <h1>Account Management</h1>
-    <p>You’re logged in.</p>
+    <p>
+      You’re logged in as 
+      <strong><%= locals.accountData.account_firstname %> <%= locals.accountData.account_lastname %></strong>
+    </p>
   </header>
 
   <!-- Flash Messages -->
@@ -13,10 +16,23 @@
     </div>
   <% } %>
 
-  <!-- Content Placeholder -->
+  <!-- Options for the logged-in user -->
   <section class="account-content">
-    <h2>Welcome to your account dashboard</h2>
-    <p>More options will appear here in future lessons.</p>
+    <h2>Account Options</h2>
+    <ul>
+      <li><a href="/account/update">Update Account Information</a></li>
+      <li><a href="/account/update-password">Change Password</a></li>
+    </ul>
   </section>
+
+  <!-- Only for Employees or Admins -->
+  <% if (locals.accountData.account_type === "Employee" || locals.accountData.account_type === "Admin") { %>
+    <section class="inventory-tools">
+      <h2>Management Tools</h2>
+      <ul>
+        <li><a href="/inv/">Inventory Management</a></li>
+      </ul>
+    </section>
+  <% } %>
 
 </div>

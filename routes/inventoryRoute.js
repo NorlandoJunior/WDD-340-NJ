@@ -2,84 +2,98 @@ const express = require("express")
 const router = express.Router()
 
 const invController = require("../controllers/invController")
-const utilities = require("../utilities/")
+console.log("invController:", Object.keys(invController))
+
+const utilities = require("../utilities/index.js")
+console.log("utilities:", Object.keys(utilities))
+
 const invValidate = require("../utilities/inv-validation")
 
-// View by classification
+// View by classification (public)
 router.get(
   "/type/:classificationId",
   utilities.handleErrors(invController.buildByClassificationId)
 )
 
-// Vehicle detail page
+// Vehicle detail page (public)
 router.get(
   "/detail/:invId",
   utilities.handleErrors(invController.buildById)
 )
 
-// Management view
+// Management view (protected)
 router.get(
   "/",
+  utilities.checkAccountType, 
   utilities.handleErrors(invController.buildManagement)
 )
 
-// Add classification (GET)
+// Add classification (GET) - protected
 router.get(
   "/add-classification",
+  utilities.checkAccountType, 
   utilities.handleErrors(invController.buildAddClassification)
 )
 
-// Add classification (POST)
+// Add classification (POST) - protected
 router.post(
   "/add-classification",
+  utilities.checkAccountType, 
   invValidate.classificationRules(),
   invValidate.checkAddClassification,
   utilities.handleErrors(invController.addClassification)
 )
 
-// Add inventory (GET)
+// Add inventory (GET) - protected
 router.get(
   "/add-inventory",
+  utilities.checkAccountType, 
   utilities.handleErrors(invController.buildAddInventory)
 )
 
-// Add inventory (POST)
+// Add inventory (POST) - protected
 router.post(
   "/add",
+  utilities.checkAccountType, 
   invValidate.inventoryRules(),
   invValidate.checkAddInventory,
   utilities.handleErrors(invController.addInventory)
 )
 
-// JSON route for AJAX inventory loading
+// JSON route for AJAX inventory loading (protected)
 router.get(
   "/getInventory/:classification_id",
+  utilities.checkAccountType,
   utilities.handleErrors(invController.getInventoryJSON)
 )
 
-// Edit inventory item view
+// Edit inventory item view (protected)
 router.get(
   "/edit/:invId",
+  utilities.checkAccountType, 
   utilities.handleErrors(invController.buildEditInventory)
 )
 
-// Update Inventory Item
+// Update Inventory Item (protected)
 router.post(
   "/update",
+  utilities.checkAccountType, 
   invValidate.inventoryRules(),
   invValidate.checkUpdateData,
   utilities.handleErrors(invController.updateInventory)
 )
 
-// Delete confirmation page (GET)
+// Delete confirmation page (protected)
 router.get(
   "/delete/:invId",
+  utilities.checkAccountType, 
   utilities.handleErrors(invController.buildDeleteInventory)
 )
 
-// Process the deletion (POST)
+// Process the deletion (protected)
 router.post(
   "/delete",
+  utilities.checkAccountType, 
   utilities.handleErrors(invController.deleteInventory)
 )
 
