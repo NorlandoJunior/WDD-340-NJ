@@ -1,50 +1,56 @@
-<div class="form-container">
-    <h1>Update Account Information</h1>
+<div class="account-update-page">
+  <h1>Update Account Information</h1>
 
-    <% if (locals.notice) { %>
-        <div class="flash-message"><%= notice %></div>
-    <% } %>
+  <!-- Flash messages -->
+  <% if (notice && notice.length > 0) { %>
+  <% notice.forEach(msg => { %>
+    <div class="flash-message success">
+      <p><%= msg %></p>
+    </div>
+  <% }) %>
+<% } %>
 
-    <% if (errors) { %>
-        <div class="form-errors">
-            <% errors.array().forEach(err => { %>
-                <p><%= err.msg %></p>
-            <% }) %>
-        </div>
-    <% } %>
 
-    <form action="/account/update" method="POST">
+  <!-- Validation errors -->
+  <% if (errors && errors.array().length > 0) { %>
+      <div class="form-errors">
+          <% errors.array().forEach(err => { %>
+              <p><%= err.msg %></p>
+          <% }) %>
+      </div>
+  <% } %>
 
-        <!-- Hidden original email (necessário para validação) -->
-        <input type="hidden" name="original_email" value="<%= account_email %>">
+  <form action="/account/update" method="POST" class="account-form">
 
-        <label for="account_firstname">First Name</label>
-        <input 
-            type="text" 
-            id="account_firstname" 
-            name="account_firstname" 
-            value="<%= account_firstname %>" 
-            required
-        >
+      <input type="hidden" name="original_email" value="<%= account_email %>">
 
-        <label for="account_lastname">Last Name</label>
-        <input 
-            type="text" 
-            id="account_lastname" 
-            name="account_lastname" 
-            value="<%= account_lastname %>" 
-            required
-        >
+      <label for="account_firstname">First Name</label>
+      <input 
+          type="text" 
+          id="account_firstname" 
+          name="account_firstname" 
+          value="<%= account_firstname %>" 
+          required
+      >
 
-        <label for="account_email">Email</label>
-        <input 
-            type="email" 
-            id="account_email" 
-            name="account_email" 
-            value="<%= account_email %>" 
-            required
-        >
+      <label for="account_lastname">Last Name</label>
+      <input 
+          type="text" 
+          id="account_lastname" 
+          name="account_lastname" 
+          value="<%= account_lastname %>" 
+          required
+      >
 
-        <button type="submit">Save Changes</button>
-    </form>
+      <label for="account_email">Email</label>
+      <input 
+          type="email" 
+          id="account_email" 
+          name="account_email" 
+          value="<%= account_email %>" 
+          required
+      >
+
+      <button type="submit" class="submit-btn">Save Changes</button>
+  </form>
 </div>

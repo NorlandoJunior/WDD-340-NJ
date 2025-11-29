@@ -73,4 +73,12 @@ router.post(
   utilities.handleErrors(accountController.updatePassword)
 )
 
+// Logout
+router.get("/logout", (req, res) => {
+  res.clearCookie("jwt")  // remove o cookie JWT
+  req.flash("notice", "You have been logged out.")
+  res.redirect("/account/login")
+})
+
+
 module.exports = router

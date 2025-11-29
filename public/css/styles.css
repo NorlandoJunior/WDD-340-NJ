@@ -1043,3 +1043,185 @@ Account Management Page
     padding: 1.5rem;
   }
 }
+
+/* Flash Messages (success) */
+.flash-message.success {
+  background-color: #e0f6ff;
+  border: 1px solid #0099cc; 
+  color: #005f80;            
+  padding: 1rem;
+  border-radius: 8px;
+  margin-bottom: 1.5rem;
+  text-align: center;
+  font-weight: bold;
+}
+
+/* Account Management Page */
+.account-management-page {
+  max-width: 500px;
+  margin: 3rem auto;
+  padding: 2rem;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  font-family: Arial, sans-serif;
+}
+
+/* Header */
+.account-management-page .account-header h1 {
+  font-size: 2rem;
+  text-align: center;
+  margin-bottom: 1.5rem;
+  color: #111;
+}
+
+/* Form Styles */
+.account-form label {
+  display: block;
+  margin-top: 18px;
+  font-weight: 600;
+  color: #222;
+}
+
+.account-form input {
+  width: 100%;
+  margin-top: 6px;
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid #cfcfcf;
+  background-color: #fafafa;
+  font-size: 1rem;
+  transition: all 0.2s ease;
+}
+
+.account-form input:focus {
+  border-color: #111;
+  background-color: #fff;
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(0,0,0,0.08);
+}
+
+/* Submit button */
+.account-form button {
+  margin-top: 25px;
+  padding: 14px;
+  width: 100%;
+  border: none;
+  background-color: #000000;
+  color: #fff;
+  font-size: 1.05rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.account-form button:hover {
+  background-color: #2b2b2b;
+}
+
+/* Form errors */
+.form-errors {
+  background-color: #ffe9e9;
+  border: 1px solid #ffb4b4;
+  color: #a10505;
+  padding: 1rem;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+}
+
+.form-errors ul {
+  list-style: disc;
+  margin-left: 1.5rem;
+}
+
+/* Account Update Page */
+.account-update-page {
+  max-width: 500px;
+  margin: 3rem auto;
+  padding: 2rem;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  font-family: Arial, sans-serif;
+}
+
+.account-update-page h1 {
+  text-align: center;
+  font-size: 2rem;
+  color: #111;
+  margin-bottom: 2rem;
+}
+
+/* Flash messages (success) */
+.account-update-page .flash-message.success {
+  background-color: #e0f6ff;
+  border-left: 4px solid #0099cc;
+  padding: 0.75rem 1rem;
+  margin-bottom: 1rem;
+  border-radius: 4px;
+  font-weight: bold;
+  text-align: center;
+}
+
+/* Form errors */
+.account-update-page .form-errors {
+  background-color: #ffe9e9;
+  border: 1px solid #ffb4b4;
+  color: #a10505;
+  padding: 1rem;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+}
+
+.account-update-page .form-errors p {
+  margin: 0.25rem 0;
+}
+
+/* Form styles */
+.account-update-page .account-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.account-update-page label {
+  font-weight: 600;
+  color: #222;
+}
+
+.account-update-page input {
+  width: 100%;
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid #cfcfcf;
+  background-color: #fafafa;
+  font-size: 1rem;
+  transition: all 0.2s ease;
+}
+
+.account-update-page input:focus {
+  border-color: #111;
+  background-color: #fff;
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(0,0,0,0.08);
+}
+
+/* Submit button */
+.account-update-page .submit-btn {
+  margin-top: 15px;
+  padding: 14px;
+  width: 100%;
+  border: none;
+  background-color: #000000;
+  color: #fff;
+  font-size: 1.05rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background 0.2s ease;
+}
+
+.account-update-page .submit-btn:hover {
+  background-color: #2b2b2b;
+}
+

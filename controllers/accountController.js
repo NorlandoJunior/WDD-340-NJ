@@ -175,6 +175,7 @@ async function buildUpdateAccount(req, res, next) {
   res.render("account/update", {
     title: "Update Account Information",
     nav,
+    notice: req.flash("notice"),
     errors: null,
     account_firstname: accountData.account_firstname,
     account_lastname: accountData.account_lastname,
@@ -190,6 +191,7 @@ async function updateAccount(req, res, next) {
   const account_id = res.locals.accountData.account_id
   const { account_firstname, account_lastname, account_email } = req.body
 
+  // Update the account in the database
   const updateResult = await accountModel.updateAccount(
     account_id,
     account_firstname,
@@ -198,20 +200,40 @@ async function updateAccount(req, res, next) {
   )
 
   if (updateResult) {
+    // Create a new token payload WITHOUT the old exp property
+    const updatedAccountData = {
+      account_id,
+      account_firstname,
+      account_lastname,
+      account_email,
+      account_type: res.locals.accountData.account_type
+    }
+
+    // Generate a new JWT token
+    const accessToken = jwt.sign(
+      updatedAccountData,
+      process.env.ACCESS_TOKEN_SECRET,
+      { expiresIn: "1h" }
+    )
+
+    // Update the cookie
+    res.cookie("jwt", accessToken, {
+      httpOnly: true,
+      secure: process.env.NODE_ENV !== "development",
+      maxAge: 3600 * 1000
+    })
+
+    // Sucess flash message
     req.flash("notice", "Account information updated successfully.")
-    return res.redirect("/account/")
+    // ← Redireciona de volta para a página de update
+    return res.redirect("/account/update")
   }
 
+  // if failed show error
   req.flash("notice", "Update failed. Try again.")
-  return res.status(400).render("account/update", {
-    title: "Update Account Information",
-    nav,
-    errors: null,
-    account_firstname,
-    account_lastname,
-    account_email
-  })
+  return res.status(400).redirect("/account/update")
 }
+
 
 /* ************************
  *  Update password view
@@ -234,20 +256,27 @@ async function updatePassword(req, res, next) {
   const { account_password } = req.body
   const account_id = res.locals.accountData.account_id
 
-  let hashedPassword = await bcrypt.hash(account_password, 10)
+  try {
+    // new hashed password
+    let hashedPassword = await bcrypt.hash(account_password, 10)
 
-  const updateResult = await accountModel.updatePassword(hashedPassword, account_id)
+    // update password in database
+    const updateResult = await accountModel.updatePassword(hashedPassword, account_id)
 
-  if (updateResult) {
-    req.flash("notice", "Password updated successfully.")
-    return res.redirect("/account/")
-  } else {
-    req.flash("notice", "Sorry, the password update failed.")
-    return res.status(501).render("account/update-password", {
-      title: "Change Password",
-      nav,
-      errors: null
-    })
+    if (updateResult) {
+      // sucess flash message
+      req.flash("notice", "Password updated successfully.")
+      // g redirect to page-password
+      return res.redirect("/account/update-password")
+    } else {
+      // Flash message de erro
+      req.flash("notice", "Sorry, the password update failed.")
+      return res.status(400).redirect("/account/update-password")
+    }
+  } catch (error) {
+    console.error(error)
+    req.flash("notice", "An unexpected error occurred. Please try again.")
+    return res.status(500).redirect("/account/update-password")
   }
 }
 
