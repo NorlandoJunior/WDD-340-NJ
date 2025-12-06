@@ -48,12 +48,15 @@ invController.buildById = async function (req, res, next) {
   const data = await invModel.getVehicleById(vehicle_id)
   const detailHTML = await utilities.buildVehicleDetailHTML(data) // <-- await adicionado
 
-  res.render("inventory/detail", {
+   res.render("inventory/detail", {
     title: `${data.inv_make} ${data.inv_model}`,
     nav,
     detailHTML,
+    vehicle: data,
     errors: null
   })
+
+
 }
 
 /* ===========================================

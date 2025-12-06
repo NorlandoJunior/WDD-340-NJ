@@ -1225,3 +1225,153 @@ Account Management Page
   background-color: #2b2b2b;
 }
 
+/* ==========================
+   FAVORITES PAGE
+========================== */
+.favorites-page {
+  max-width: 900px;
+  margin: 3rem auto;
+  padding: 2rem;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  font-family: Arial, sans-serif;
+}
+
+/* Page Header */
+.favorites-page .favorites-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.favorites-page .favorites-header h1 {
+  font-size: 2rem;
+  color: #111;
+  margin-bottom: 0.5rem;
+}
+
+.favorites-page .favorites-header p {
+  font-size: 1rem;
+  color: #333;
+}
+
+/* Flash Messages */
+.favorites-page .flash-message {
+  background-color: #ffe9e9;
+  border: 1px solid #ffb4b4;
+  color: #a10505;
+  padding: 1rem;
+  border-radius: 8px;
+  margin-bottom: 1.5rem;
+  text-align: center;
+  font-weight: bold;
+}
+
+/* Favorites List Grid */
+.favorites-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+  justify-items: center;
+}
+
+/* Individual Favorite Card */
+.favorites-grid article {
+  background-color: #f5f5f5;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+  text-align: center;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.favorites-grid article:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 5px 12px rgba(0,0,0,0.15);
+}
+
+.favorites-grid img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+}
+
+.favorites-grid h2 {
+  color: #000;
+  font-size: 1.2rem;
+  margin: 0.5rem 0;
+}
+
+.favorites-grid p {
+  color: #444;
+  font-size: 0.9rem;
+  padding: 0 0.75rem 1rem;
+}
+
+/* Remove button for favorite */
+.favorites-grid .btn-remove {
+  display: inline-block;
+  margin-bottom: 1rem;
+  padding: 10px 15px;
+  font-size: 0.95rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  background-color: #9a0000;
+  color: #fff;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.favorites-grid .btn-remove:hover {
+  background-color: #000;
+}
+
+/* Empty State */
+.favorites-page .no-favorites {
+  text-align: center;
+  font-size: 1.2rem;
+  color: #555;
+  margin-top: 2rem;
+}
+
+/* Responsive */
+@media (max-width: 500px) {
+  .favorites-page {
+    margin: 1.5rem;
+    padding: 1.5rem;
+  }
+}
+
+
+/*favorite button in vehicle detail page*/
+.favorite-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background-color: #8b0505;
+  color: #fff;
+  font-weight: 600;
+  padding: 10px 16px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.2s ease;
+  margin-top: 10px;
+  font-size: 1rem;
+}
+
+.favorite-btn:hover {
+  background-color: #000000;
+  transform: scale(1.05);
+}
+
+.favorite-btn.active {
+  background-color: #0066cc;
+}
+
+.favorite-btn .star {
+  font-size: 1.2rem;
+}
+

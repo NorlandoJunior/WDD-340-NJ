@@ -1,3 +1,30 @@
+<button 
+  class="favorite-btn <%= vehicle.isFavorite ? 'active' : '' %>"
+  data-inv="<%= vehicle.inv_id %>"
+>
+  <span class="star">⭐</span> Favorite
+</button>
+
+<script>
+document.querySelector(".favorite-btn")?.addEventListener("click", async (e) => {
+  const inv_id = e.target.dataset.inv
+
+  const res = await fetch("/favorites/toggle", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ inv_id })
+  })
+
+  const data = await res.json()
+
+  if (data.action === "added") {
+    e.target.textContent = "⭐ Favorited"
+  } else {
+    e.target.textContent = "⭐ Favorite"
+  }
+})
+</script>
+
 <div class="vehicle-detail-page">
 
   <div class="vehicle-header">

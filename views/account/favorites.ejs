@@ -1,0 +1,21 @@
+<div class="favorites-page">
+  <div class="favorites-header">
+    <h1>My Favorites</h1>
+    <p>See all your saved vehicles</p>
+  </div>
+
+  <% if (!favorites || favorites.length === 0) { %>
+    <p class="no-favorites">No favorites yet.</p>
+  <% } else { %>
+    <div class="favorites-grid">
+      <% favorites.forEach(item => { %>
+        <article>
+          <img src="<%= item.inv_image %>" alt="<%= item.inv_make %> <%= item.inv_model %>">
+          <h2><%= item.inv_make %> <%= item.inv_model %></h2>
+          <p>$<%= item.inv_price %></p>
+          <a class="btn-primary" href="/inv/detail/<%= item.inv_id %>">View Vehicle</a>
+        </article>
+      <% }) %>
+    </div>
+  <% } %>
+</div>

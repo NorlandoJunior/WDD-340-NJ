@@ -3,6 +3,7 @@ const router = express.Router()
 const utilities = require("../utilities/")
 const accountController = require("../controllers/accountController")
 const regValidate = require('../utilities/account-validation')
+const favoritesController = require("../controllers/favoritesController")
 
 
 // Account Management View
@@ -80,5 +81,11 @@ router.get("/logout", (req, res) => {
   res.redirect("/account/login")
 })
 
+// Favorites Page
+router.get(
+  "/favorites",
+  utilities.checkLogin,
+  utilities.handleErrors(favoritesController.buildFavorites)
+)
 
 module.exports = router

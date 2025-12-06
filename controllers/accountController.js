@@ -280,6 +280,18 @@ async function updatePassword(req, res, next) {
   }
 }
 
+/* ************************
+ *  Deliver Favorites View
+ * ************************ */
+async function buildFavorites(req, res, next) {
+  let nav = await utilities.getNav();
+  res.render("account/favorites", {
+    title: "My Favorites",
+    nav,
+    accountData: req.session.accountData // ou como você armazena os dados do usuário
+  });
+}
+
 module.exports = { 
   buildLogin, 
   buildRegister, 
@@ -289,5 +301,6 @@ module.exports = {
   updateAccount,
   buildUpdateAccount,
   buildUpdatePassword,
-  updatePassword
+  updatePassword,
+  buildFavorites
 }
